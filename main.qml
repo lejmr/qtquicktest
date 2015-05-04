@@ -33,7 +33,6 @@ ApplicationWindow {
                     onClicked: fileDialogInputFile.open()
                 }
 
-
                 Label { text: "Output directory";  }
                 TextField {id: output_dir_field}
                 Button {
@@ -50,8 +49,6 @@ ApplicationWindow {
                     width: 500
                     model: [ "ip", "sip+rtp", "tcp+ip", "dns" ]
                 }
-
-
             }
 
             Row{
