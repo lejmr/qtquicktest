@@ -1,5 +1,6 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
+#include "analysissignal.h"
 
 int main(int argc, char *argv[])
 {
@@ -7,6 +8,12 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
+
+    AnalysisSignal analysisSignal;
+    QObject *win = engine.rootObjects()[0];
+    QObject *item = win->findChild<QObject*>("myButton");
+    QObject::connect(item, SIGNAL(doAnalysisSignal(QString,QString,QString)), &analysisSignal, SLOT(cppSlot(QString,QString,QString)));
 
     return app.exec();
 }

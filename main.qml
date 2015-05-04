@@ -53,20 +53,19 @@ ApplicationWindow {
                 }
             }
 
-            Row{
 
                 Button {
 
-                    signal qmlSignal(string msg)
+                    signal doAnalysisSignal(string filter_cmd, string worker_cmd, string filter_output)
                     objectName: "myButton"
 
                     text: "Analyze"
-                    onClicked: {
-                        console.log("Filter command " + Logic.filter_cmd())
-                        qmlSignal(Logic.filter_cmd())
+                    onClicked: {                        
+                        // Bundle function
+                        doAnalysisSignal(Logic.filter_cmd(), Logic.worker_cmd(), Logic.filter_output())
                     }
                 }
-            }
+
         }
 
         TextArea {

@@ -61,11 +61,11 @@ function worker_cmd() {
     return worker_cmd + worker_opts
 }
 
-function run_filter(){
+function filter_output(){
     /*
       Function checkes whether filter is necessary to run
     */
-
+    var filtered_file = "";
     switch(analysis_type.currentIndex){
 
         case 0:
@@ -86,5 +86,5 @@ function run_filter(){
             return false
     }
 
-    return 1
+    return filtered_file
 }
