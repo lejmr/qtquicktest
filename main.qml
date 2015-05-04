@@ -3,6 +3,7 @@ import QtQuick.Controls 1.3
 import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.1
+import "routines.js" as Logic
 
 ApplicationWindow {
     title: qsTr("Protolyzer")
@@ -41,13 +42,14 @@ ApplicationWindow {
                 }
 
                 Label { text: "Size";  }
-                TextField {id: size; text:"100"}
+                TextField {id: size_field; text:"100"}
                 Label { text: "MB";  }
 
                 Label { text: "Analysis";  }
                 ComboBox {
                     width: 500
                     model: [ "ip", "sip+rtp", "tcp+ip", "dns" ]
+                    id: analysis_type
                 }
             }
 
@@ -60,16 +62,12 @@ ApplicationWindow {
 
                     text: "Analyze"
                     onClicked: {
-                        console.log("Nahodne cislo " + Logic.func())
-                        qmlSignal(log_output.text)
+                        console.log("Filter command " + Logic.filter_cmd())
+                        qmlSignal(Logic.filter_cmd())
                     }
                 }
             }
-
-
-
         }
-
 
         TextArea {
             id: log_output
@@ -96,5 +94,4 @@ ApplicationWindow {
                 console.log("You chose: " + fileDialogOutputDir.fileUrl)
             }
         }
-
 }
