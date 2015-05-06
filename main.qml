@@ -64,6 +64,9 @@ ApplicationWindow {
                         // Bundle function
                         doAnalyseSignal(Logic.filter_cmd(), Logic.worker_cmd(), Logic.filter_output())
                     }
+
+                    function log_output_write(line){
+                        log_output.text += line
                     }
                 }
 

@@ -10,6 +10,11 @@ void AnalysisSignal::cppSlot(const QString &filter_cmd, const QString &worker_cm
     qDebug() << "Filter output:"  << filter_output ;
 
 
+
+    emit showOutput("test");
+
+
+
     /*
     FILE *in;
     char buff[512];

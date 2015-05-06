@@ -12,6 +12,9 @@ public:
 public slots:
     void cppSlot(const QString &filter_cmd, const QString &worker_cmd, const QString &filter_output);
 
+signals:
+    void showOutput(const QString);
+
 };
 
 #endif // ANALYSISSIGNAL_H
