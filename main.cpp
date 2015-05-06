@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     AnalysisSignal analysisSignal;
     QObject *win = engine.rootObjects()[0];
     QObject *item = win->findChild<QObject*>("myButton");
-    QObject::connect(item, SIGNAL(doAnalysisSignal(QString,QString,QString)), &analysisSignal, SLOT(cppSlot(QString,QString,QString)));
+    QObject::connect(item, SIGNAL(doAnalyseSignal(QString,QString,QString)), &analysisSignal, SLOT(cppSlot(QString,QString,QString)));
 
     return app.exec();
 }

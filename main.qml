@@ -56,13 +56,14 @@ ApplicationWindow {
 
                 Button {
 
-                    signal doAnalysisSignal(string filter_cmd, string worker_cmd, string filter_output)
+                    signal doAnalyseSignal(string filter_cmd, string worker_cmd, string filter_output)
                     objectName: "myButton"
 
                     text: "Analyze"
                     onClicked: {                        
                         // Bundle function
-                        doAnalysisSignal(Logic.filter_cmd(), Logic.worker_cmd(), Logic.filter_output())
+                        doAnalyseSignal(Logic.filter_cmd(), Logic.worker_cmd(), Logic.filter_output())
+                    }
                     }
                 }
 
