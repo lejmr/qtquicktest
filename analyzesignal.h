@@ -6,7 +6,7 @@
 class AnalyzeSignal : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(NOTIFY writeToLogOutput)
+
 public:
     explicit AnalyzeSignal(QObject *parent = 0);
 

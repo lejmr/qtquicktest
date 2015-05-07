@@ -7,13 +7,14 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
 
     //
     AnalyzeSignal analyzeSignal;
     QQmlContext *context = new QQmlContext(engine.rootContext());
     context->setContextProperty("analyzeSignal", &analyzeSignal);
 
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     // Registering slot onto a signal
     QObject *win = engine.rootObjects()[0];
