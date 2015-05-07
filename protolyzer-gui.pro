@@ -3,7 +3,7 @@ TEMPLATE = app
 QT += qml quick widgets
 
 SOURCES += main.cpp \
-    analysissignal.cpp
+    analyzesignal.cpp
 
 RESOURCES += qml.qrc
 
@@ -17,4 +17,4 @@ DISTFILES += \
     routines.js
 
 HEADERS += \
-    analysissignal.h
+    analyzesignal.h

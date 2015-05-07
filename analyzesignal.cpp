@@ -1,17 +1,17 @@
-#include "analysissignal.h"
+#include "analyzesignal.h"
 #include <QDebug>
 #include <stdio.h>
 
-AnalysisSignal::AnalysisSignal(QObject *parent) : QObject(parent) {}
+AnalyzeSignal::AnalyzeSignal(QObject *parent) : QObject(parent) {}
 
-void AnalysisSignal::cppSlot(const QString &filter_cmd, const QString &worker_cmd, const QString &filter_output){
+void AnalyzeSignal::cppSlot(const QString &filter_cmd, const QString &worker_cmd, const QString &filter_output){
     qDebug() << "Filter CMD:"  << filter_cmd ;
     qDebug() << "Worker CMD:"  << worker_cmd ;
     qDebug() << "Filter output:"  << filter_output ;
 
 
 
-    emit showOutput("test");
+    emit writeToLogOutput("test");
 
 
 

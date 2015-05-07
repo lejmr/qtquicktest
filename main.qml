@@ -5,6 +5,7 @@ import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.1
 import "routines.js" as Logic
 
+
 ApplicationWindow {
     title: qsTr("Protolyzer")
     width: 400
@@ -12,6 +13,13 @@ ApplicationWindow {
     visible: true
     minimumHeight: 400
     minimumWidth: 400
+
+
+
+    function write_to_log(line){
+        log_output.text += line
+    }
+
 
     ColumnLayout{
             spacing: 2
@@ -56,17 +64,14 @@ ApplicationWindow {
 
                 Button {
 
-                    signal doAnalyseSignal(string filter_cmd, string worker_cmd, string filter_output)
+                    signal doAnalyzeSignal(string filter_cmd, string worker_cmd, string filter_output)
                     objectName: "myButton"
 
                     text: "Analyze"
                     onClicked: {                        
                         // Bundle function
-                        doAnalyseSignal(Logic.filter_cmd(), Logic.worker_cmd(), Logic.filter_output())
-                    }
-
-                    function log_output_write(line){
-                        log_output.text += line
+                        doAnalyzeSignal(Logic.filter_cmd(), Logic.worker_cmd(), Logic.filter_output())
+                        analyzeSignal.writeToLogOutput.connect(write_to_log)
                     }
                 }
 
@@ -97,4 +102,5 @@ ApplicationWindow {
                 console.log("You chose: " + fileDialogOutputDir.fileUrl)
             }
         }
+
 }
