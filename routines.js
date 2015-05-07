@@ -4,7 +4,10 @@ function filter_cmd() {
     */
 
     var filter_cmd = "./filter"
-    var filter_opts = " -i "+input_file_field.text+" -o "+output_dir_field.text+" -s "+size_field.text
+    var filter_opts = " -i "+input_file_field.text+" -o "+output_dir_field.text
+
+    if( size_field.text > 0 )
+        filter_opts += " -s "+size_field.text
 
     switch(analysis_type.currentIndex){
 
