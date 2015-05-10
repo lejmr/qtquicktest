@@ -32,10 +32,15 @@ ApplicationWindow {
                 id: grid
                 columns: 3
 
-                Label { text: "Input pcap file";  }
+                Label { text: "Input pcap file(s)";  }
                 TextField {
                     id: input_file_field
 
+                }
+                Text {
+                    id: input_file_command
+                    visible: false
+                    text: ""
                 }
                 Button {
                     text: "..."
@@ -88,8 +93,24 @@ ApplicationWindow {
         FileDialog {
             id: fileDialogInputFile
             title: "Please choose a file"
+            nameFilters: [ "PCAP files (*.pcap *.pcapng)", "All files (*)" ]
+            selectedNameFilter: "PCAP files (*.pcap *.pcapng)"
+            selectMultiple: true
             onAccepted: {
-                input_file_field.text = fileDialogInputFile.fileUrl
+                console.log("Adding files " + fileUrls)
+                for(var i = 0; i < fileUrls.length; i++){
+                    console.log("Filtering file " + fileUrls[i])
+                    input_file_field.text += fileUrls[i]
+                    if(i < (fileUrls.length - 1) ) {
+                        input_file_field.text += " "
+                    }
+                    input_file_command.text += " -i " + fileUrls[i]
+                }
+//                input_file_field.text = fileDialogInputFile.fileUrl
+            }
+            onRejected: {
+                input_file_command.text = ""
+                input_file_field.text = ""
             }
         }
 
@@ -98,8 +119,8 @@ ApplicationWindow {
             title: "Please select output directory"
             selectFolder: true
             onAccepted: {
-                output_dir_field.text = fileDialogOutputDir.fileUrl
-                console.log("You chose: " + fileDialogOutputDir.fileUrl)
+                output_dir_field.text = fileDialogOutputDir.folder
+                console.log("You chose: " + fileDialogOutputDir.folder)
             }
         }
 

@@ -15,11 +15,11 @@ void AnalyzeSignal::cppSlot(const QString &filter_cmd, const QString &worker_cmd
 
 
 
-    /*
+
     FILE *in;
     char buff[512];
 
-    if( (in = popen("ls -sail", "r")) ){
+    if( (in = popen(filter_cmd, "r")) ){
 
         while(fgets(buff, sizeof(buff), in)!=NULL){
             qDebug() << buff;
@@ -28,7 +28,7 @@ void AnalyzeSignal::cppSlot(const QString &filter_cmd, const QString &worker_cmd
 
     }
 
-    */
+
 
 
 }
