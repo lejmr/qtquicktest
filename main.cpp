@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 
     //
     AnalyzeSignal analyzeSignal;
-    QQmlContext *context = new QQmlContext(engine.rootContext());
+    QQmlContext *context = engine.rootContext();
     context->setContextProperty("analyzeSignal", &analyzeSignal);
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
