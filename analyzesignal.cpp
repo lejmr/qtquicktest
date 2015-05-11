@@ -11,24 +11,20 @@ void AnalyzeSignal::cppSlot(const QString &filter_cmd, const QString &worker_cmd
 
 
 
-    emit writeToLogOutput("test");
+
+    run_cmd("pwd");
 
 
+}
 
-
+void AnalyzeSignal::run_cmd(const QString &cmd){
     FILE *in;
     char buff[512];
-
-    if( (in = popen(filter_cmd, "r")) ){
-
+    if( (in = popen(cmd.toStdString().c_str(), "r")) ){
         while(fgets(buff, sizeof(buff), in)!=NULL){
             qDebug() << buff;
+            writeToLogOutput(buff);
         }
         pclose(in);
-
     }
-
-
-
-
 }
