@@ -4,7 +4,9 @@ function filter_cmd() {
     */
 
     var filter_cmd = "./filter"
-    var filter_opts = " -i "+input_file_field.text+" -o "+output_dir_field.text
+    var filter_input_files = input_file_command.text.replace(/file:\/\//g,"")
+    var filter_output_dir = output_dir_field.text.replace(/file:\/\//g,"")
+    var filter_opts = filter_input_files + " -o " + filter_output_dir
 
     if( size_field.text > 0 )
         filter_opts += " -s "+size_field.text
@@ -37,23 +39,24 @@ function worker_cmd() {
     /*
       Function composes worker command based on app options
     */
+    var filter_output_dir = output_dir_field.text.replace(/file:\/\//g,"")
 
     var worker_cmd = "./savesip"
-    var worker_opts = " -o "+output_dir_field.text
+    var worker_opts = " -o " + filter_output_dir
 
     switch(analysis_type.currentIndex){
 
         case 0:
-            worker_opts += " -i "+output_dir_field.text+"/ip.pcap"
+            worker_opts += " -i "+filter_output_dir+"/ip.pcap"
             break;
         case 1:
-            worker_opts += " -i "+output_dir_field.text+"/sip-ip.pcap"
+            worker_opts += " -i "+filter_output_dir+"/sip-ip.pcap"
             break;
         case 2:
-            worker_opts += " -i "+output_dir_field.text+"/tcp-ip.pcap"
+            worker_opts += " -i "+filter_output_dir+"/tcp-ip.pcap"
             break;
         case 3:
-            worker_opts += " -i "+output_dir_field.text+"/dns.pcap"
+            worker_opts += " -i "+filter_output_dir+"/dns.pcap"
             break;
 
         default:
@@ -69,19 +72,20 @@ function filter_output(){
       Function checkes whether filter is necessary to run
     */
     var filtered_file = "";
+    var filter_output_dir = output_dir_field.text.replace(/file:\/\//g,"")
     switch(analysis_type.currentIndex){
 
         case 0:
-            filtered_file = output_dir_field.text+"/ip.pcap"
+            filtered_file = filter_output_dir+"/ip.pcap"
             break;
         case 1:
-            filtered_file = output_dir_field.text+"/sip-ip.pcap"
+            filtered_file = filter_output_dir+"/sip-ip.pcap"
             break;
         case 2:
-            filtered_file = output_dir_field.text+"/tcp-ip.pcap"
+            filtered_file = filter_output_dir+"/tcp-ip.pcap"
             break;
         case 3:
-            filtered_file = output_dir_field.text+"/dns.pcap"
+            filtered_file = filter_output_dir+"/dns.pcap"
             break;
 
         default:
